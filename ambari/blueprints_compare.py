@@ -24,6 +24,7 @@ def parse_arguments():
 	parser.add_argument('blueprintFile1')
 	parser.add_argument('blueprintFile2')
 	parser.add_argument('--updateFile', action='store', default=None)
+	parser.add_argument('--printDiffs', action='store_true', default=True)
 	parser.add_argument('--debug', action='store_true', default=False)
 	return parser.parse_args()
 
@@ -184,7 +185,9 @@ def main():
 	configs2 = parse_configs(blueprint2["configurations"])
 
 	diffs = compare_configs(configs1, configs2, True)
-	#print_diffs(diffs, "csv")
+
+	if (args.printDiffs):
+		print_diffs(diffs, "csv")
 
 	if (args.updateFile != None):
 		write_updates(diffs, updateFile)
