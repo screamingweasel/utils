@@ -34,14 +34,15 @@ def os_exec(command):
 ###################################################################################################
 def main():
 	if (len(sys.argv) < 3):
-		print 'Incorrect number of parameters\nUsage: ' + str(sys.argv[0]) + ' <config-type> <new propertiesi file>'
+		print 'Incorrect number of parameters\nUsage: ' + str(sys.argv[0]) + ' <config-type> <new properties file>'
 		sys.exit(1)
 
+	# TODO: Parameterize
 	user="admin"
-	password="cursor11"
+	password="xxxxxxxx"
 	port="8080"
-	host="csc2cxp00001336.cloud.kp.org"
-	cluster="kpadfdmprod01"
+	host="ambari.foo.bar"
+	cluster="mycluster"
 	configType=sys.argv[1]
 	newPropertiesFile=sys.argv[2]
 
@@ -56,8 +57,8 @@ def main():
 		sys.exit(exit_code)
 
 	# Read the json output		
-        with open(tmpFileName) as f:
-                j=json.load(f)
+	with open(tmpFileName) as f:
+		j=json.load(f)
 	pprint(j)
 
 	# Do any updates / inserts
